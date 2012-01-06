@@ -1,0 +1,1 @@
+These are the fonts required by my conkyrc. I've included them here for convenience's sake, but it should be know they all came from DaFont.com, and I've intentionally left them zipped, so as to include the entire package, along with any license documents.
