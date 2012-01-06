@@ -1,0 +1,32 @@
+#!/bin/bash
+
+#
+# Grab weather data from wunderground.com and format it according to the given XSLT
+# Script written by rtlong
+# Modified by rtlong
+# The orignal script and xslt can be downloaded from http://pondol.com/weather.tar.gz
+
+# Usage:
+# ${execi 1800 ~/.bin/weather-report KMNOSSEO5}
+
+# Find your LOCID on Wunderground.com. In this case, you want the weather station ID. In my example:
+# *** http://www.wunderground.com/cgi-bin/findweather/getForecast?query=55369&sp=KMNOSSEO5 ***
+# I want the 'KMNOSSEO5' ID code. You can find this is the URL as above, or on the WunderMap, when
+# you select a station.
+LOCID=$1
+
+# where this script and the XSLT lives
+RUNDIR=$HOME/.bin
+
+# CURL url
+#CURLURL="http://api.wunderground.com/auto/wui/geo/ForecastXML/index.xml?query=$LOCID"
+CURLURL="http://api.wunderground.com/weatherstation/WXCurrentObXML.asp?ID=$LOCID"
+
+# The XSLT to use when translating the response
+XSLT=$RUNDIR/weather-report.xslt
+
+# filter (if you want to convert stuff to lower-case or upper case or something)
+FILTER="|gawk '{print(tolower(\$0));}'"
+
+#####
+eval "curl \"$CURLURL\" 2>/dev/null | xsltproc $XSLT -"

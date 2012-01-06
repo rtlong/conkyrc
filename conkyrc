@@ -49,16 +49,15 @@ show_graph_scale no
 show_graph_range no
 
 display :0
-#append_file /home/ryan/conky.log
 
 template0 ${color1}\1 ${voffset 2}${fs_bar 8,50 \2}$color${voffset -2}
 
 TEXT
 ${voffset 10}$color2${font Gentium:size=50}${time %I:%M}${font Gentium:size=25} ${time %P} ${alignr}${time %A, %e %B %Y}$font
 ${voffset 5}$hr
-${voffset 550}${execi 300 /home/ryan/.bin/weather-report KMNOSSEO5}
+${voffset 550}${execi 300 ~/.bin/weather-report KMNOSSEO5}
 Up: $uptime_short$color1 • CPU Temp: $acpitemp°C • Load Avg: $loadavg • Battery: $battery  ${battery_bar 6,50}$color
 ${template0 boot /boot} • ${template0 root /} • ${template0 home /home} • RAM ${voffset 2}${membar 8,50}${voffset -2}
 ${color1}Network Totals: $totalup${voffset -2}${font DejaVu Sans} ▴${voffset 2} ▾$font $totaldown • DNS: ${nameserver 0}, ${nameserver 1} • External IP: ${tail /tmp/external-ip 1} • Wired IP: ${addr eth0}${if_up wlan0} • WiFi IP: ${addr wlan0}$endif
 
-${voffset -630}$color2${font Gentium:size=18}${execpi 7200 fortune "/home/ryan/Dropbox/Code/Ruby/TinyBuddha/tiny_buddha" | ruby-1.9.3-p0 /home/ryan/.bin/wrap-fortune.rb }$font$color
+${voffset -630}$color2${font Gentium:size=18}${execpi 7200 fortune ~/.fortune | ruby-1.9.3-p0 ~/.bin/wrap-fortune.rb }$font$color
